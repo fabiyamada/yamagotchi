@@ -6,9 +6,12 @@ export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'copy-sw',
+      name: 'copy-static-files',
       writeBundle() {
+        // Copiar service worker
         copyFileSync('service-worker.js', 'dist/service-worker.js')
+        // Copiar manifest
+        copyFileSync('manifest.json', 'dist/manifest.json')
       }
     }
   ],
