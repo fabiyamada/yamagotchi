@@ -11,6 +11,7 @@ const PetNaming: React.FC<PetNamingProps> = ({ selectedEggType, onComplete }) =>
   const [petName, setPetName] = useState('');
 
   const EGG_TO_COLOR_MAP: Record<EggType, string> = {
+    ordinario: '#d3d3d3',  // Light gray
     common: '#A8A8A8',     // Gray
     rare: '#4A90E2',       // Blue
     epic: '#8E44AD',       // Purple
