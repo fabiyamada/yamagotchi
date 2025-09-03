@@ -1,1 +1,2 @@
 yamagotchi
+o_o
