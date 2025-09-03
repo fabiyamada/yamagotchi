@@ -3,7 +3,10 @@ const CACHE_NAME = 'yamagotchi-v1';
 self.addEventListener("install", (event) => {
   console.log("Service Worker instalando...");
   event.waitUntil(
-    caches.open(CACHE_NAME).then(() => {
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log("Cacheando recursos estáticos");
+      return cache.addAll(STATIC_RESOURCES);
+    }).then(() => {
       console.log("Service Worker instalado exitosamente");
     })
   );
