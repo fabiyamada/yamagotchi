@@ -4,7 +4,7 @@ function ClipboardStorage() {
   const [mensaje, setMensaje] = useState("");
 
   // Detecta si un string es JSON válido
-  const tryParse = (str: string | null) => {
+  const tryParse = (str) => {
     if (!str) return str;
     try {
       return JSON.parse(str);
@@ -16,7 +16,7 @@ function ClipboardStorage() {
   // Copiar todo el localStorage al portapapeles (sin "debug")
   const handleCopyFromLocalStorage = async () => {
     try {
-      const allData: Record<string, any> = {};
+      const allData = {};
 
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
