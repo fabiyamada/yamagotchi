@@ -13,7 +13,7 @@ const GameSelection: React.FC<GameSelectionProps> = ({ onSelectGame, onCancel })
       name: 'Revienta Burbujas',
       description: 'Revienta burbujas para ganar monedas y felicidad',
       emoji: '🫧',
-      duration: '15 segundos',
+      duration: '20 segundos',
       rewards: ['💰 10% probabilidad de monedas', '😊 Felicidad extra'],
       color: 'from-blue-400 to-cyan-500',
       hoverColor: 'from-blue-500 to-cyan-600',
