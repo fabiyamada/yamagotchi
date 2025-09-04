@@ -101,29 +101,29 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
   }, [generateBubble]);
 
   // Pop bubble
-  const popBubble = (bubble: Bubble) => {
-    console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
-    
-    console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
-    
-    // Add to popped bubbles for animation
-    setPoppedBubbles(prev => [...prev, { id: bubble.id, x: bubble.x, y: bubble.y, isCoin: bubble.isCoin }]);
-    
-    // Remove from bubbles
-    setBubbles(prev => prev.filter(b => b.id !== bubble.id));
-    
-    // Update rewards
-    if (bubble.isCoin) {
-      setCoinsEarned(prev => prev + 1);
-    } else {
-      setHappinessEarned(prev => prev + 1);
-    }
+const popBubble = (bubble: Bubble, event: React.MouseEvent) => {
+  event.stopPropagation();
+  
+  console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
+  
+  // Add to popped bubbles for animation
+  setPoppedBubbles(prev => [...prev, { id: bubble.id, x: bubble.x, y: bubble.y, isCoin: bubble.isCoin }]);
+  
+  // Remove from bubbles
+  setBubbles(prev => prev.filter(b => b.id !== bubble.id));
+  
+  // Update rewards
+  if (bubble.isCoin) {
+    setCoinsEarned(prev => prev + 1);
+  } else {
+    setHappinessEarned(prev => prev + 1);
+  }
 
-    // Remove popped bubble animation after delay
-    setTimeout(() => {
-      setPoppedBubbles(prev => prev.filter(p => p.id !== bubble.id));
-    }, 800);
-  };
+  // Remove popped bubble animation after delay
+  setTimeout(() => {
+    setPoppedBubbles(prev => prev.filter(p => p.id !== bubble.id));
+  }, 800);
+};
 
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 z-50 overflow-hidden">
@@ -167,7 +167,7 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
       {bubbles.map(bubble => (
         <button
           key={bubble.id}
-          onClick={() => popBubble(bubble)}
+          onClick={(event) => popBubble(bubble, event)}
           className="absolute rounded-full shadow-lg transform transition-all duration-200 hover:scale-110 active:scale-95"
           style={{
             left: `${bubble.x}%`,
