@@ -17,6 +17,8 @@ import FoodSelectionPopup from './components/FoodSelectionPopup';
 import { AlertTriangle } from 'lucide-react';
 import InstallButton from "./components/InstallButton";
 
+import ExportImportSystem from './components/ExportImportSystem';
+
 function App() {
   const [showMoodPopup, setShowMoodPopup] = useState(false);
   const [showHygieneWarning, setShowHygieneWarning] = useState(false);
@@ -497,7 +499,7 @@ function App() {
     </div>
   );
 }
-import ExportImportSystem from './components/ExportImportSystem';
+
 
 // Usar en tu app principal o como modal
 <ExportImportSystem />
