@@ -394,7 +394,7 @@ function App() {
                   pet.isSleeping ? 'text-blue-300 hover:text-blue-200' : 'text-blue-600 hover:text-blue-700'
                 }`}
               >
-                @fabiyamada_art ,
+                @fabiyamada_art 
               </a>
             </p>
             <InstallButton />
@@ -402,7 +402,45 @@ function App() {
         </div>
 
         
-
+{/* Info */}
+        <div className="mt-8 mb-8 text-center">
+          <div className={`backdrop-blur-sm rounded-2xl p-4 shadow-lg border transition-all duration-1000 ${
+            pet.isSleeping 
+              ? 'bg-gray-800/60 border-gray-600/50 text-white/70' 
+              : 'bg-white/60 border-white/50 text-gray-600'
+          }`}>
+            <p className="text-xs font-poppins mb-2">
+              🎮 Desarrollado por <span className="font-semibold">Fabi Yamada</span>.
+            </p>
+            <p className="text-xs font-poppins">
+              💖 Apoya el desarrollo del Yamagotchi:{' '}
+              <a 
+                href="https://bolt.new/?rid=yfsvis" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`font-semibold hover:underline transition-colors ${
+                  pet.isSleeping ? 'text-pink-300 hover:text-pink-200' : 'text-pink-600 hover:text-pink-700'
+                }`}
+              >
+                Creando tu cuenta en Bolt con mi enlace
+              </a> (ambos obtenemos 200K Tokens extra).
+            </p>
+            <p className="text-xs font-poppins mb-3">
+              🐛 Reporta bugs o envía ideas:{' '}
+              <a 
+                href="https://www.instagram.com/fabiyamada_art/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`font-semibold hover:underline transition-colors ${
+                  pet.isSleeping ? 'text-blue-300 hover:text-blue-200' : 'text-blue-600 hover:text-blue-700'
+                }`}
+              >
+                @fabiyamada_art 
+              </a>
+            </p>
+            <InstallButton />
+          </div>
+        </div>
 
 
         
