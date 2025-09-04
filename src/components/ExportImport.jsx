@@ -202,6 +202,7 @@ const ExportImport = () => {
         </div>
 
         {/* Sección de Demostración */}
+         {/*
         <div className="p-5 bg-white/30 rounded-2xl border border-white/40">
           <h3 className="text-xl font-semibold text-gray-600 mb-4">🧪 Prueba el Sistema</h3>
           <div className="flex flex-wrap gap-2 mb-4">
@@ -249,7 +250,7 @@ const ExportImport = () => {
           <div className="bg-white/60 p-4 rounded-lg font-mono text-xs text-gray-600 max-h-40 overflow-y-auto whitespace-pre-line">
             {currentData}
           </div>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
