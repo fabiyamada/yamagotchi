@@ -78,7 +78,7 @@ function ClipboardStorage() {
         Clonar Yamagotchi
       </button>
 
-      {mensaje && <p className="text-sm text-gray-700">{mensaje}</p>}
+      {mensaje && <p className="text-sm text-gray-700 mt-3">{mensaje}</p>}
     </div>
   );
 }
