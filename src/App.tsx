@@ -401,7 +401,7 @@ function App() {
           }`}>
             <p className="text-xs font-poppins mb-2">
               Zona peligrosa y de pruebas
-                </div>
+                </p>
 
              <InstallButton />
 
