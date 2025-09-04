@@ -149,7 +149,7 @@ const FoodSelectionPopup: React.FC<FoodSelectionPopupProps> = ({
                    {currentStock <= 0 && (
                      <button
                        onClick={onOpenShop}
-                       className="px-4 py-2 rounded-xl font-poppins font-bold text-sm shadow-lg transform transition-all duration-200 bg-gradient-to-r from-purple-400 to-purple-500 hover:from-purple-500 hover:to-purple-600 text-white hover:scale-105 active:scale-95"
+                       className="px-4 py-2 rounded-xl font-poppins font-bold text-sm shadow-lg transform transition-all duration-200 bg-gradient-to-r from-purple-400 to-purple-500 hover:from-purple-500 hover:to-purple-600 text-white hover:scale-105 active:scale-95 opacity-100"
                      >
                        Ir a la tienda
                      </button>
