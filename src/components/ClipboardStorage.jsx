@@ -54,11 +54,11 @@ function ClipboardStorage() {
         }
         setMensaje("✅ Yamagotchi clonado, refresca la página.");
       } else {
-        setMensaje("⚠️ El portapapeles no contiene JSON válido.");
+        setMensaje("⚠️ No se encuentra ADN válido.");
       }
     } catch (err) {
       console.error(err);
-      setMensaje("❌ Error al pegar data al localStorage.");
+      setMensaje("❌ Error clonar Yamagotchi.");
     }
   };
 
