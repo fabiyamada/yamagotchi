@@ -29,14 +29,14 @@ function ClipboardStorage() {
       const jsonData = JSON.stringify(allData, null, 2);
       await navigator.clipboard.writeText(jsonData);
 
-      setMensaje("📋 Copiado localStorage (sin debug) al portapapeles.");
+      setMensaje("📋 Copiado localStorage al portapapeles (sin debug).");
     } catch (err) {
       console.error(err);
       setMensaje("❌ Error al copiar localStorage.");
     }
   };
 
-  // Pegar desde el portapapeles al localStorage (sin tocar debug)
+  // Pegar desde el portapapeles al localStorage (sin debug)
   const handlePasteToLocalStorage = async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -44,7 +44,7 @@ function ClipboardStorage() {
 
       if (typeof data === "object" && data !== null) {
         for (const key in data) {
-          if (key === "debug") continue; // ignorar debug por si viene
+          if (key === "debug") continue; // ignorar debug
           const value = data[key];
           if (typeof value === "object") {
             localStorage.setItem(key, JSON.stringify(value));
