@@ -121,14 +121,21 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
     }, 1500); // Increased delay for better UX
   }, [calculateRewards, onGameEnd]);
 
-  // Game timer
+// Game timer
   useEffect(() => {
     if (!gameStarted || gameEnded) return;
     
     if (timeLeft > 0 && matchedPairs < 6) {
       const timer = setTimeout(() => setTimeLeft(prev => prev - 1), 1000);
       return () => clearTimeout(timer);
-    } else if (timeLeft === 0 || matchedPairs === 6) {
+    }
+  }, [timeLeft, gameStarted, gameEnded]);
+
+  // Check for game end conditions
+  useEffect(() => {
+    if (!gameStarted || gameEnded) return;
+    
+    if (timeLeft === 0 || matchedPairs === 6) {
       endGame();
     }
   }, [timeLeft, matchedPairs, gameStarted, gameEnded, endGame]);
