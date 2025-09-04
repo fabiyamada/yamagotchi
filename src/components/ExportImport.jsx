@@ -33,7 +33,7 @@ const ExportImport = () => {
 
       // Copiar al portapapeles
       navigator.clipboard.writeText(jsonData).then(() => {
-        showStatus(setExportStatus, '✅ Datos copiados al portapapeles', 'success');
+        showStatus(setExportStatus, '✅ Datos copiados.', 'success');
       }).catch(() => {
         showStatus(setExportStatus, '📋 Datos listos para copiar manualmente', 'success');
       });
