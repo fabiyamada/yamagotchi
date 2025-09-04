@@ -9,8 +9,7 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>
 );
 
-import ExportImport from './components/ExportImport';
-<ExportImport />
+
 
 // --- REGISTRAR SERVICE WORKER ---
 if ('serviceWorker' in navigator) {
