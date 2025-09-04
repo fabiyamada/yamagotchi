@@ -65,17 +65,33 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
   }, [generateBubble]);
 
   // Game timer
-  useEffect(() => {
-    if (timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      // Game ended
-      setTimeout(() => {
-        onGameEnd({ coinsEarned, happinessEarned });
-      }, 1000);
-    }
-  }, [timeLeft, onGameEnd, coinsEarned, happinessEarned]);
+useEffect(() => {
+  console.log('Timer useEffect triggered, timeLeft:', timeLeft);
+  
+  if (timeLeft > 0) {
+    console.log('Setting timer for', timeLeft, 'seconds');
+    const startTime = Date.now();
+    
+    const timer = setTimeout(() => {
+      const actualTime = Date.now() - startTime;
+      console.log('Timer fired after', actualTime, 'ms, expected 1000ms');
+      console.log('Reducing timeLeft from', timeLeft, 'to', timeLeft - 1);
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+    
+    return () => {
+      console.log('Timer cleanup called for timeLeft:', timeLeft);
+      clearTimeout(timer);
+    };
+  } else {
+    console.log('Game ended, timeLeft is 0');
+    // Game ended
+    setTimeout(() => {
+      console.log('Calling onGameEnd with coins:', coinsEarned, 'happiness:', happinessEarned);
+      onGameEnd({ coinsEarned, happinessEarned });
+    }, 1000);
+  }
+}, [timeLeft, onGameEnd, coinsEarned, happinessEarned]);
 
   // Bubble movement and generation
   useEffect(() => {
@@ -102,26 +118,43 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
 
   // Pop bubble
 const popBubble = (bubble: Bubble) => {
+  console.log('=== BUBBLE CLICKED ===');
+  console.log('Current timeLeft when bubble clicked:', timeLeft);
   console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
   
   // Add to popped bubbles for animation
-  setPoppedBubbles(prev => [...prev, { id: bubble.id, x: bubble.x, y: bubble.y, isCoin: bubble.isCoin }]);
+  setPoppedBubbles(prev => {
+    console.log('Setting popped bubbles');
+    return [...prev, { id: bubble.id, x: bubble.x, y: bubble.y, isCoin: bubble.isCoin }];
+  });
   
   // Remove from bubbles
-  setBubbles(prev => prev.filter(b => b.id !== bubble.id));
+  setBubbles(prev => {
+    console.log('Removing bubble from bubbles array');
+    return prev.filter(b => b.id !== bubble.id);
+  });
   
   // Update rewards
   if (bubble.isCoin) {
+    console.log('Adding coin, current coins:', coinsEarned);
     setCoinsEarned(prev => prev + 1);
   } else {
+    console.log('Adding happiness, current happiness:', happinessEarned);
     setHappinessEarned(prev => prev + 1);
   }
+
+  console.log('=== END BUBBLE CLICK ===');
 
   // Remove popped bubble animation after delay
   setTimeout(() => {
     setPoppedBubbles(prev => prev.filter(p => p.id !== bubble.id));
   }, 800);
 };
+
+// También agrega un log cada vez que timeLeft cambie:
+useEffect(() => {
+  console.log('TimeLeft state changed to:', timeLeft);
+}, [timeLeft]);
 
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 z-50 overflow-hidden">
