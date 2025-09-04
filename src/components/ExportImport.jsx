@@ -180,7 +180,7 @@ const ExportImport = () => {
           <h2 className="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-3">
             <span>📥</span>Importar Datos
           </h2>
-          <textarea disabled
+          <textarea
             value={importData}
             onChange={(e) => setImportData(e.target.value)}
             placeholder="Pega aquí los datos que quieres importar..."
@@ -201,6 +201,56 @@ const ExportImport = () => {
               {importStatus.message}
             </div>
           )}
+
+          export default function GuardarPortapapeles() {
+  const [texto, setTexto] = useState("");
+
+  const handleGuardar = async () => {
+    try {
+      // Leer del portapapeles
+      const text = await navigator.clipboard.readText();
+      
+      // Guardar en localStorage
+      localStorage.setItem("clipboardText", text);
+      
+      setTexto(text);
+      alert("Guardado en localStorage ✅");
+    } catch (err) {
+      console.error("No se pudo leer el portapapeles:", err);
+    }
+  };
+
+  const handleCargar = () => {
+    const saved = localStorage.getItem("clipboardText") || "";
+    setTexto(saved);
+  };
+
+  return (
+    <div className="space-y-3">
+      <button
+        onClick={handleGuardar}
+        className="px-3 py-2 rounded bg-blue-500 text-white"
+      >
+        Guardar portapapeles en localStorage
+      </button>
+
+      <button
+        onClick={handleCargar}
+        className="px-3 py-2 rounded bg-green-500 text-white"
+      >
+        Cargar desde localStorage
+      </button>
+
+      <textarea
+        value={texto}
+        onChange={(e) => setTexto(e.target.value)}
+        className="w-full border rounded p-2"
+        rows={6}
+        placeholder="Aquí verás lo que se guardó"
+      />
+    </div>
+  );
+}
         </div>
 
         {/* Sección de Demostración */}
