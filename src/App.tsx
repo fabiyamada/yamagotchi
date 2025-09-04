@@ -17,7 +17,7 @@ import FoodSelectionPopup from './components/FoodSelectionPopup';
 import { AlertTriangle } from 'lucide-react';
 import InstallButton from "./components/InstallButton";
 
-import ExportImportSystem from './components/ExportImportSystem';
+import ExportImport from './components/ExportImport';
 
 function App() {
   const [showMoodPopup, setShowMoodPopup] = useState(false);
