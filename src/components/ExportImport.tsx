@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ExportImportSystem = () => {
+const ExportImport = () => {
   const [exportData, setExportData] = useState('');
   const [importData, setImportData] = useState('');
   const [exportStatus, setExportStatus] = useState({ message: '', type: '' });
