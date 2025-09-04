@@ -182,7 +182,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
             setMatchedPairs(prev => prev + 1);
             setFlippedCards([]);
             setIsProcessing(false);
-          }, 600);
+          }, 60000);
         } else {
           // No match, flip back
           timeoutRef.current = setTimeout(() => {
