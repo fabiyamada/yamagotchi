@@ -156,12 +156,14 @@ const ExportImport = () => {
           >
             Copiar Todos los Datos
           </button>
+          {/* textarea comentada para que no puedan modificar la data
           <textarea
             value={exportData}
             readOnly
             placeholder="Los datos exportados aparecerán aquí..."
             className="w-full h-32 p-4 border-2 border-gray-200 rounded-xl font-mono text-sm resize-none focus:border-purple-500 focus:outline-none bg-white/80 transition-colors duration-300"
           />
+          */}
           {exportStatus.message && (
             <div className={`mt-3 p-3 rounded-lg font-medium transition-all duration-300 ${
               exportStatus.type === 'success' 
