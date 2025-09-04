@@ -175,7 +175,7 @@ const ExportImport = () => {
 
         {/* Sección de Importar */}
         <div className="mb-8 p-6 bg-white/50 rounded-2xl border border-white/30 hover:transform hover:-translate-y-1 transition-all duration-300">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4 flex items-center gap-3">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-3">
             <span>📥</span>Importar Datos
           </h2>
           <textarea
