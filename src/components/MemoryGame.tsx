@@ -193,7 +193,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
             ));
             setFlippedCards([]);
             setIsProcessing(false);
-          }, 120000);
+          }, 500); // isProcessing time
         }
 
         return currentCards;
