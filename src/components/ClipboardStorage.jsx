@@ -45,14 +45,14 @@ function ClipboardStorage() {
         onClick={handleCopyFromLocalStorage}
         className="px-3 py-2 rounded-xl bg-blue-500 text-white mr-3"
       >
-        Copiar data del localStorage
+        Copiar ADN Yamagotchi
       </button>
 
       <button
         onClick={handlePasteToLocalStorage}
         className="px-3 py-2 rounded-xl bg-green-500 text-white"
       >
-        Pegar data al localStorage
+        Clonar Yamagotchi
       </button>
 
       {mensaje && <p className="text-sm text-gray-700">{mensaje}</p>}
