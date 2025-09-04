@@ -432,13 +432,15 @@ function App() {
             
             <InstallButton />
 
-            <ExportImport />
+            
           </div>
         </div>
 
 
         
       </div>
+
+      <ExportImport />
 
       {/* Food Selection Popup */}
       {showFoodSelectionPopup && (
