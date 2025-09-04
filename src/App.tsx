@@ -346,7 +346,16 @@ function App() {
             <li>• Jugar hace feliz a tu mascota pero la cansa</li>
             <li>• Tu progreso se guarda automáticamente</li>
           </ul>
-          
+          {/* Reset Button - Moved to end with warning styling */}
+          <div className="mt-4 text-center">
+            <button
+              onClick={resetPet}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-poppins rounded-full text-sm transition-colors border-2 border-red-600 shadow-lg"
+            >
+              <AlertTriangle size={16} />
+              Reiniciar Mascota
+            </button>
+          </div>
         </div>
 
         {/* Particles Effect */}
@@ -385,38 +394,14 @@ function App() {
                   pet.isSleeping ? 'text-blue-300 hover:text-blue-200' : 'text-blue-600 hover:text-blue-700'
                 }`}
               >
-                @fabiyamada_art
+                @fabiyamada_art ,
               </a>
             </p>
-           
+            <InstallButton />
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-8 mb-8 text-center">
-          <div className={`backdrop-blur-sm rounded-2xl p-4 shadow-lg border transition-all duration-1000 ${
-            pet.isSleeping 
-              ? 'bg-gray-800/60 border-gray-600/50 text-white/70' 
-              : 'bg-white/60 border-white/50 text-gray-600'
-          }`}>
-            <p className="text-xs font-poppins mb-2">
-              Zona peligrosa y de pruebas
-                </p>
-
-             <InstallButton />
-
-            {/* Reset Button - Moved to end with warning styling */}
-          <div className="mt-4 text-center">
-            Si das click aquí tu mascota actual se borrará e iniciarás una nueva. Tus monedas se van a conservar y podrás comprar otra si así lo deseas.
-            <button
-              onClick={resetPet}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-poppins rounded-full text-sm transition-colors border-2 border-red-600 shadow-lg"
-            >
-              <AlertTriangle size={16} />
-              Reiniciar Mascota
-            </button>
-          </div>
-          </div>
+        
 
 
 
