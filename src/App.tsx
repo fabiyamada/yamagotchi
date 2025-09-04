@@ -432,7 +432,7 @@ function App() {
             
             <InstallButton />
 
-            <ExportImportSystem />
+            <ExportImport />
           </div>
         </div>
 
