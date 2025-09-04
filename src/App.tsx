@@ -17,7 +17,7 @@ import FoodSelectionPopup from './components/FoodSelectionPopup';
 import { AlertTriangle } from 'lucide-react';
 import InstallButton from "./components/InstallButton";
 import ExportImport from './components/ExportImport';
-<ExportImport />
+
 
 function App() {
   const [showMoodPopup, setShowMoodPopup] = useState(false);
@@ -502,7 +502,7 @@ function App() {
 
 
       
-
+<ExportImport />
       
     </div>
 
