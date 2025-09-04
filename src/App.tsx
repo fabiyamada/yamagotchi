@@ -497,11 +497,14 @@ function App() {
       )}
 
     </div>
+
+    // Usar en tu app principal o como modal
+<ExportImportSystem />
+  
   );
 }
 
 
-// Usar en tu app principal o como modal
-<ExportImportSystem />
+
 
 export default App;
