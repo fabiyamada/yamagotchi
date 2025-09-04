@@ -43,14 +43,14 @@ function ClipboardStorage() {
     <div className="space-y-2 p-4 border rounded">
       <button
         onClick={handleCopyFromLocalStorage}
-        className="px-3 py-2 rounded bg-blue-500 text-white"
+        className="px-3 py-2 rounded-xl bg-blue-500 text-white"
       >
         Copiar data del localStorage
       </button>
 
       <button
         onClick={handlePasteToLocalStorage}
-        className="px-3 py-2 rounded bg-green-500 text-white"
+        className="px-3 py-2 rounded-xl bg-green-500 text-white"
       >
         Pegar data al localStorage
       </button>
