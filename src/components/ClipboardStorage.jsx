@@ -3,31 +3,45 @@ import { useState } from "react";
 function ClipboardStorage() {
   const [mensaje, setMensaje] = useState("");
 
-  // Pegar (leer portapapeles y guardar en localStorage)
-  const handlePasteToLocalStorage = async () => {
+  // Copiar todo el localStorage al portapapeles
+  const handleCopyFromLocalStorage = async () => {
     try {
-      const text = await navigator.clipboard.readText();
-      localStorage.setItem("miData", text);
-      setMensaje(`Guardado en localStorage: "${text}"`);
+      const allData: Record<string, string | null> = {};
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key) {
+          allData[key] = localStorage.getItem(key);
+        }
+      }
+
+      const jsonData = JSON.stringify(allData, null, 2);
+      await navigator.clipboard.writeText(jsonData);
+
+      setMensaje("📋 Copiado todo el localStorage al portapapeles.");
     } catch (err) {
       console.error(err);
-      setMensaje("❌ No se pudo leer el portapapeles.");
+      setMensaje("❌ Error al copiar localStorage.");
     }
   };
 
-  // Copiar (leer localStorage y escribir en portapapeles)
-  const handleCopyFromLocalStorage = async () => {
+  // Pegar desde el portapapeles al localStorage
+  const handlePasteToLocalStorage = async () => {
     try {
-      const text = localStorage.getItem("miData") || "";
-      if (!text) {
-        setMensaje("⚠️ No hay nada guardado en localStorage.");
-        return;
+      const text = await navigator.clipboard.readText();
+      const data = JSON.parse(text);
+
+      if (typeof data === "object" && data !== null) {
+        for (const key in data) {
+          localStorage.setItem(key, data[key]);
+        }
+        setMensaje("✅ Data pegada al localStorage.");
+      } else {
+        setMensaje("⚠️ El contenido del portapapeles no es un JSON válido.");
       }
-      await navigator.clipboard.writeText(text);
-      setMensaje(`Copiado al portapapeles: "${text}"`);
     } catch (err) {
       console.error(err);
-      setMensaje("❌ No se pudo copiar al portapapeles.");
+      setMensaje("❌ Error al pegar data al localStorage.");
     }
   };
 
