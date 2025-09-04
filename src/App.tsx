@@ -432,7 +432,7 @@ function App() {
             
             <InstallButton />
 
-            
+             <ClipboardStorage />
           </div>
         </div>
 
@@ -502,7 +502,7 @@ function App() {
 
 
       
- <ClipboardStorage />
+
       
     </div>
 
