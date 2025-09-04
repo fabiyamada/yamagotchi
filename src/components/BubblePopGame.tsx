@@ -21,7 +21,7 @@ interface BubblePopGameProps {
 
 const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggType }) => {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(20);
   const [coinsEarned, setCoinsEarned] = useState(0);
   const [happinessEarned, setHappinessEarned] = useState(0);
   const [poppedBubbles, setPoppedBubbles] = useState<{ id: number; x: number; y: number; isCoin: boolean }[]>([]);
