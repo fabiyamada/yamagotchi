@@ -346,16 +346,7 @@ function App() {
             <li>• Jugar hace feliz a tu mascota pero la cansa</li>
             <li>• Tu progreso se guarda automáticamente</li>
           </ul>
-          {/* Reset Button - Moved to end with warning styling */}
-          <div className="mt-4 text-center">
-            <button
-              onClick={resetPet}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-poppins rounded-full text-sm transition-colors border-2 border-red-600 shadow-lg"
-            >
-              <AlertTriangle size={16} />
-              Reiniciar Mascota
-            </button>
-          </div>
+          
         </div>
 
         {/* Particles Effect */}
@@ -414,18 +405,22 @@ function App() {
             </p>
             
             <p className="text-xs font-poppins mb-3">
-              🐛 Reporta bugs o envía ideas:{' '}
-              <a 
-                href="https://www.instagram.com/fabiyamada_art/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={`font-semibold hover:underline transition-colors ${
-                  pet.isSleeping ? 'text-blue-300 hover:text-blue-200' : 'text-blue-600 hover:text-blue-700'
-                }`}
-              >
-                @fabiyamada_art 
-              </a>
+             Si das click aquí tu mascota actual desaparecerá. Conservarás tus monedas y podras comprar otro huevito si así lo deseas:
+              
             </p>
+
+            {/* Reset Button - Moved to end with warning styling */}
+          <div className="mt-4 text-center">
+            <button
+              onClick={resetPet}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-poppins rounded-full text-sm transition-colors border-2 border-red-600 shadow-lg"
+            >
+              <AlertTriangle size={16} />
+              Reiniciar Mascota
+            </button>
+          </div>
+
+            
             <InstallButton />
           </div>
         </div>
