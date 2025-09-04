@@ -140,7 +140,7 @@ const ExportImport = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center p-5">
-      <div className="bg-white/95 backdrop-blur-md rounded-3xl p-10 max-w-2xl w-full shadow-2xl border border-white/20">
+      <div className="bg-white/95 backdrop-blur-md rounded-2xl p-10 max-w-2xl w-full shadow-2xl border border-white/20">
         <h1 className="text-2xl font-bold text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-8">
           🎮 Exportar/Importar Datos del Juego
         </h1>
