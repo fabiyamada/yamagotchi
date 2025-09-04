@@ -497,5 +497,9 @@ function App() {
     </div>
   );
 }
+import ExportImportSystem from './components/ExportImportSystem';
+
+// Usar en tu app principal o como modal
+<ExportImportSystem />
 
 export default App;
