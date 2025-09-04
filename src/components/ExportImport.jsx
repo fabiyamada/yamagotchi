@@ -180,7 +180,7 @@ const ExportImport = () => {
           <h2 className="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-3">
             <span>📥</span>Importar Datos
           </h2>
-          <textarea
+          <textarea disabled
             value={importData}
             onChange={(e) => setImportData(e.target.value)}
             placeholder="Pega aquí los datos que quieres importar..."
