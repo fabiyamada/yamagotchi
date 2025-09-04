@@ -101,9 +101,7 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
   }, [generateBubble]);
 
   // Pop bubble
-const popBubble = (bubble: Bubble, event: React.MouseEvent) => {
-  event.stopPropagation();
-  
+const popBubble = (bubble: Bubble) => {
   console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
   
   // Add to popped bubbles for animation
@@ -166,19 +164,28 @@ const popBubble = (bubble: Bubble, event: React.MouseEvent) => {
       {/* Bubbles */}
       {bubbles.map(bubble => (
         <button
-          key={bubble.id}
-          onClick={(event) => popBubble(bubble, event)}
-          className="absolute rounded-full shadow-lg transform transition-all duration-200 hover:scale-110 active:scale-95"
-          style={{
-            left: `${bubble.x}%`,
-            top: `${bubble.y}px`,
-            width: `${bubble.size}px`,
-            height: `${bubble.size}px`,
-            backgroundColor: bubble.color,
-            boxShadow: `0 4px 15px rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.3)`,
-            border: bubble.isCoin ? '3px solid #FFA500' : '2px solid rgba(255,255,255,0.3)',
-          }}
-        >
+  key={bubble.id}
+  onMouseDown={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    popBubble(bubble);
+  }}
+  onTouchStart={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    popBubble(bubble);
+  }}
+  className="absolute rounded-full shadow-lg transform transition-all duration-200 hover:scale-110 active:scale-95"
+  style={{
+    left: `${bubble.x}%`,
+    top: `${bubble.y}px`,
+    width: `${bubble.size}px`,
+    height: `${bubble.size}px`,
+    backgroundColor: bubble.color,
+    boxShadow: `0 4px 15px rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.3)`,
+    border: bubble.isCoin ? '3px solid #FFA500' : '2px solid rgba(255,255,255,0.3)',
+  }}
+>
           {/* Bubble shine effect */}
           <div 
             className="absolute top-2 left-2 rounded-full bg-white/40 blur-sm"
