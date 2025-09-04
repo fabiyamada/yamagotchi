@@ -29,14 +29,14 @@ function ClipboardStorage() {
       const jsonData = JSON.stringify(allData, null, 2);
       await navigator.clipboard.writeText(jsonData);
 
-      setMensaje("📋 Copiado localStorage al portapapeles (sin debug).");
+      setMensaje("📋 ADN copiado.");
     } catch (err) {
       console.error(err);
-      setMensaje("❌ Error al copiar localStorage.");
+      setMensaje("❌ Error al copiar ADN.");
     }
   };
 
-  // Pegar desde el portapapeles al localStorage (sin debug)
+  // Pegar desde el portapapeles al localStorage 
   const handlePasteToLocalStorage = async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -52,7 +52,7 @@ function ClipboardStorage() {
             localStorage.setItem(key, String(value));
           }
         }
-        setMensaje("✅ Data pegada al localStorage (sin debug).");
+        setMensaje("✅ Yamagotchi clonado, refresca la página.");
       } else {
         setMensaje("⚠️ El portapapeles no contiene JSON válido.");
       }
