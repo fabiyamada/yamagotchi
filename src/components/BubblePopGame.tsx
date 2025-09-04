@@ -85,13 +85,18 @@ useEffect(() => {
     };
   } else {
     console.log('Game ended, timeLeft is 0');
-    // Game ended
     setTimeout(() => {
-      console.log('Calling onGameEnd with coins:', coinsEarned, 'happiness:', happinessEarned);
-      onGameEnd({ coinsEarned, happinessEarned });
+      console.log('Calling onGameEnd');
+      setCoinsEarned(currentCoins => {
+        setHappinessEarned(currentHappiness => {
+          onGameEnd({ coinsEarned: currentCoins, happinessEarned: currentHappiness });
+          return currentHappiness;
+        });
+        return currentCoins;
+      });
     }, 1000);
   }
-}, [timeLeft, onGameEnd, coinsEarned, happinessEarned]);
+}, [timeLeft, onGameEnd]);
 
   // Bubble movement and generation
   useEffect(() => {
