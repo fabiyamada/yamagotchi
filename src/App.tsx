@@ -498,8 +498,8 @@ function App() {
 
     </div>
 
-    // Usar en tu app principal o como modal
-<ExportImportSystem />
+
+
   
   );
 }
