@@ -440,7 +440,7 @@ function App() {
         
       </div>
 
-      <ExportImport />
+      
 
       {/* Food Selection Popup */}
       {showFoodSelectionPopup && (
@@ -500,6 +500,10 @@ function App() {
         </div>
       )}
 
+
+      <ExportImport />
+
+      
     </div>
 
 
