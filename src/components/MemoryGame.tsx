@@ -90,11 +90,16 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
   // Calculate rewards (memoized to avoid recalculation)
   const calculateRewards = useCallback(() => {
     const multiplier = bonusMultipliers[eggType];
-    const baseCoins = matchedPairs * 2;
-    const timeBonus = Math.max(0, timeLeft);
-    const movesPenalty = Math.max(0, moves - 12);
     
-    const coinsEarned = Math.round((baseCoins + timeBonus - movesPenalty) * multiplier);
+    // Reduced coin rewards to 30% of original
+    const baseCoins = matchedPairs * 0.6; // Was 2, now 0.6 (30% of 2)
+    const timeBonus = Math.max(0, timeLeft) * 0.3; // 30% of time bonus
+    const movesPenalty = Math.max(0, moves - 12) * 0.3; // 30% of penalty
+    
+    const rawCoins = (baseCoins + timeBonus - movesPenalty) * multiplier;
+    const coinsEarned = Math.round(rawCoins);
+    
+    // Happiness stays the same for now
     const happinessEarned = Math.round((matchedPairs * 3 + (matchedPairs === 6 ? 10 : 0)) * multiplier);
     
     return {
