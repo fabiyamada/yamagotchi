@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PetState, PetStats, GameAction, GamePhase, EggType, PlayerData, EGG_COSTS, INITIAL_FOOD_STOCK, FOOD_ITEMS } from '../types/Pet';
+import { PetState, PetStats, GameAction, GamePhase, EggType, PlayerData, EGG_COSTS, INITIAL_FOOD_STOCK, FOOD_ITEMS, GameType } from '../types/Pet';
 import { savePetData, loadPetData, clearPetData, savePlayerData, loadPlayerData, clearPlayerData } from '../utils/localStorage';
 
 const INITIAL_STATS: PetStats = {
@@ -47,7 +47,7 @@ export const usePetGame = () => {
   const [showCleaningBubbles, setShowCleaningBubbles] = useState(false);
   const [gamePhase, setGamePhase] = useState<GamePhase>('loading');
   const [selectedEggType, setSelectedEggType] = useState<EggType | null>(null);
-  const [currentGame, setCurrentGame] = useState<'bubblePop' | null>(null);
+  const [currentGame, setCurrentGame] = useState<GameType | null>(null);
   const [feedingFoodId, setFeedingFoodId] = useState<string | null>(null);
 
   // Load saved pet data on mount
@@ -337,12 +337,12 @@ export const usePetGame = () => {
     savePetData(newPet);
   }, [selectedEggType]);
 
-  const startGame = useCallback((gameType: 'bubblePop') => {
+  const startGame = useCallback((gameType: GameType) => {
     setCurrentGame(gameType);
     setGamePhase('inGame');
   }, []);
 
-  const endGame = useCallback((gameType: 'bubblePop', results: { coinsEarned: number; happinessEarned: number }) => {
+  const endGame = useCallback((gameType: GameType, results: { coinsEarned: number; happinessEarned: number }) => {
     // Actualizar monedas del jugador
     setPlayerData(prevData => ({
       ...prevData,

@@ -11,6 +11,7 @@ import EggHatching from './components/EggHatching';
 import PetNaming from './components/PetNaming';
 import GameSelection from './components/GameSelection';
 import BubblePopGame from './components/BubblePopGame';
+import MemoryGame from './components/MemoryGame';
 import FoodShop from './components/FoodShop';
 import FoodSelectionPopup from './components/FoodSelectionPopup';
 import { AlertTriangle } from 'lucide-react';
@@ -119,6 +120,10 @@ function App() {
 
   if (gamePhase === 'inGame' && currentGame === 'bubblePop') {
     return <BubblePopGame onGameEnd={(results) => endGame('bubblePop', results)} onCancel={cancelGame} eggType={pet.eggType} />;
+  }
+
+  if (gamePhase === 'inGame' && currentGame === 'memoryGame') {
+    return <MemoryGame onGameEnd={(results) => endGame('memoryGame', results)} onCancel={cancelGame} eggType={pet.eggType} />;
   }
 
   if (gamePhase === 'shop') {

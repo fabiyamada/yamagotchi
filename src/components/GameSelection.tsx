@@ -2,7 +2,7 @@ import React from 'react';
 import { Gamepad2, ArrowLeft, Coins } from 'lucide-react';
 
 interface GameSelectionProps {
-  onSelectGame: (gameType: 'bubblePop') => void;
+  onSelectGame: (gameType: 'bubblePop' | 'memoryGame') => void;
   onCancel: () => void;
 }
 
@@ -17,6 +17,16 @@ const GameSelection: React.FC<GameSelectionProps> = ({ onSelectGame, onCancel })
       rewards: ['💰 10% probabilidad de monedas', '😊 Felicidad extra'],
       color: 'from-blue-400 to-cyan-500',
       hoverColor: 'from-blue-500 to-cyan-600',
+    },
+    {
+      id: 'memoryGame' as const,
+      name: 'Memoria',
+      description: 'Encuentra las parejas de cartas',
+      emoji: '🧠',
+      duration: '30 segundos',
+      rewards: ['💰 Monedas por parejas', '😊 Bonus por completar'],
+      color: 'from-purple-400 to-pink-500',
+      hoverColor: 'from-purple-500 to-pink-600',
     },
   ];
 

@@ -27,6 +27,7 @@ export interface GameAction {
 
 export type GamePhase = 'loading' | 'eggSelection' | 'hatching' | 'naming' | 'playing' | 'gameSelection' | 'inGame';
 export type EggType = 'ordinario' | 'common' | 'rare' | 'epic' | 'legendary' | 'mythic';
+export type GameType = 'bubblePop' | 'memoryGame';
 
 export interface PlayerData {
   coins: number;
