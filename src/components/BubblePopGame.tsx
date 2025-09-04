@@ -25,7 +25,12 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
   const [coinsEarned, setCoinsEarned] = useState(0);
   const [happinessEarned, setHappinessEarned] = useState(0);
   const [poppedBubbles, setPoppedBubbles] = useState<{ id: number; x: number; y: number; isCoin: boolean }[]>([]);
+  const [gameEnded, setGameEnded] = useState(false);
   const bubbleIdCounter = useRef(0);
+  
+  // Use refs to track rewards without affecting timer
+  const coinsEarnedRef = useRef(0);
+  const happinessEarnedRef = useRef(0);
 
   const colors = ['#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8'];
 
@@ -53,7 +58,7 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
       isCoin,
       color: isCoin ? '#FFD700' : colors[Math.floor(Math.random() * colors.length)],
     };
-  }, [eggType]);
+  }, [eggType, coinProbabilities]);
 
   // Initialize bubbles
   useEffect(() => {
@@ -64,21 +69,34 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
     setBubbles(initialBubbles);
   }, [generateBubble]);
 
-  // Game timer
+  // Game timer - separated from game state
   useEffect(() => {
+    if (gameEnded) return;
+    
     if (timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      const timer = setTimeout(() => setTimeLeft(prev => prev - 1), 1000);
       return () => clearTimeout(timer);
-    } else {
-      // Game ended
+    }
+  }, [timeLeft, gameEnded]);
+
+  // Check for game end
+  useEffect(() => {
+    if (timeLeft === 0 && !gameEnded) {
+      setGameEnded(true);
+      // Use the ref values for the final score
       setTimeout(() => {
-        onGameEnd({ coinsEarned, happinessEarned });
+        onGameEnd({ 
+          coinsEarned: coinsEarnedRef.current, 
+          happinessEarned: happinessEarnedRef.current 
+        });
       }, 1000);
     }
-  }, [timeLeft, onGameEnd, coinsEarned, happinessEarned]);
+  }, [timeLeft, gameEnded, onGameEnd]);
 
   // Bubble movement and generation
   useEffect(() => {
+    if (gameEnded) return;
+    
     const interval = setInterval(() => {
       setBubbles(prevBubbles => {
         let newBubbles = prevBubbles
@@ -98,11 +116,11 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
     }, 100);
 
     return () => clearInterval(interval);
-  }, [generateBubble]);
+  }, [generateBubble, gameEnded]);
 
   // Pop bubble
   const popBubble = (bubble: Bubble) => {
-    console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
+    if (gameEnded) return;
     
     console.log('Bubble popped:', bubble.id, 'isCoin:', bubble.isCoin);
     
@@ -112,11 +130,19 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
     // Remove from bubbles
     setBubbles(prev => prev.filter(b => b.id !== bubble.id));
     
-    // Update rewards
+    // Update rewards and refs
     if (bubble.isCoin) {
-      setCoinsEarned(prev => prev + 1);
+      setCoinsEarned(prev => {
+        const newValue = prev + 1;
+        coinsEarnedRef.current = newValue;
+        return newValue;
+      });
     } else {
-      setHappinessEarned(prev => prev + 1);
+      setHappinessEarned(prev => {
+        const newValue = prev + 1;
+        happinessEarnedRef.current = newValue;
+        return newValue;
+      });
     }
 
     // Remove popped bubble animation after delay
