@@ -26,6 +26,8 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
   const [happinessEarned, setHappinessEarned] = useState(0);
   const [poppedBubbles, setPoppedBubbles] = useState<{ id: number; x: number; y: number; isCoin: boolean }[]>([]);
   const bubbleIdCounter = useRef(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const gameEndedRef = useRef(false);
 
   const colors = ['#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8'];
 
@@ -64,13 +66,41 @@ const BubblePopGame: React.FC<BubblePopGameProps> = ({ onGameEnd, onCancel, eggT
     setBubbles(initialBubbles);
   }, [generateBubble]);
 
-  // Game timer
+  // Stable game timer using useRef
   useEffect(() => {
-    if (timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      // Game ended
+    // Clear any existing timer
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+
+    // Start new timer
+    timerRef.current = setInterval(() => {
+      setTimeLeft(prevTime => {
+        if (prevTime <= 1) {
+          // Game will end, clear timer
+          if (timerRef.current) {
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+          }
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    // Cleanup on unmount
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, []); // Empty dependency array for stable timer
+
+  // Handle game end when timer reaches zero
+  useEffect(() => {
+    if (timeLeft === 0 && !gameEndedRef.current) {
+      gameEndedRef.current = true;
       setTimeout(() => {
         onGameEnd({ coinsEarned, happinessEarned });
       }, 1000);
