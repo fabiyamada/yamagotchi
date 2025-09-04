@@ -22,8 +22,6 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
   const [timeLeft, setTimeLeft] = useState(30);
   const [moves, setMoves] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const gameEndedRef = useRef(false);
 
   const symbols = ['🌸', '🎀', '⭐', '💖', '🦄', '🌈', '🍓', '🎈'];
 
@@ -64,52 +62,15 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
     initializeGame();
   }, [initializeGame]);
 
-  // Stable game timer using useRef
+  // Game timer
   useEffect(() => {
-    if (!gameStarted) {
-      return;
-    }
-
-    // Clear any existing timer
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-
-    // Start new timer
-    timerRef.current = setInterval(() => {
-      setTimeLeft(prevTime => {
-        if (prevTime <= 1) {
-          // Game will end, clear timer
-          if (timerRef.current) {
-            clearInterval(timerRef.current);
-            timerRef.current = null;
-          }
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-
-    // Cleanup on unmount
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-  }, [gameStarted]); // Only depend on gameStarted
-
-  // Handle game end when timer reaches zero or all pairs are matched
-  useEffect(() => {
-    if ((timeLeft === 0 || matchedPairs === 6) && !gameEndedRef.current) {
-      gameEndedRef.current = true;
-      
-      // Clear timer if game ends early due to completion
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-      
+    if (!gameStarted) return;
+    
+    if (timeLeft > 0 && matchedPairs < 6) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (timeLeft === 0 || matchedPairs === 6) {
+      // Game ended
       setTimeout(() => {
         const multiplier = bonusMultipliers[eggType];
         const baseCoins = matchedPairs * 2;
@@ -125,7 +86,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onGameEnd, onCancel, eggType })
         });
       }, 1000);
     }
-  }, [timeLeft, matchedPairs, onGameEnd, eggType, moves]);
+  }, [timeLeft, matchedPairs, gameStarted, onGameEnd, eggType, moves]);
 
   // Handle card flip
   const flipCard = (cardId: number) => {
