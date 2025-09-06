@@ -299,22 +299,35 @@ export const usePetGame = () => {
   }, []);
 
   const selectEgg = useCallback((eggType: EggType) => {
+    console.log('=== selectEgg function called ===');
+    console.log('eggType received:', eggType);
+    
     const cost = EGG_COSTS[eggType];
+    console.log('cost for', eggType, ':', cost);
+    console.log('current playerData.coins:', playerData.coins);
     
     // Verificar si el jugador tiene suficientes monedas
+    console.log('Checking if cost > playerData.coins:', cost, '>', playerData.coins, '=', cost > playerData.coins);
     if (cost > playerData.coins) {
+      console.log('NOT ENOUGH COINS - returning early');
       return; // No permitir la selección
     }
     
+    console.log('ENOUGH COINS - proceeding with egg selection');
+    
     // Descontar monedas
+    console.log('Deducting coins and updating player data');
     setPlayerData(prevData => ({
       ...prevData,
       coins: prevData.coins - cost,
       totalPetsHatched: prevData.totalPetsHatched + 1,
     }));
     
+    console.log('Setting selectedEggType to:', eggType);
     setSelectedEggType(eggType);
+    console.log('Setting gamePhase to: hatching');
     setGamePhase('hatching');
+    console.log('=== selectEgg function completed ===');
   }, []);
 
   const hatchEgg = useCallback(() => {
