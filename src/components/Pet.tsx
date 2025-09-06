@@ -46,7 +46,7 @@ const Pet: React.FC<PetProps> = ({ pet, feedingFoodId }) => {
         {/* Hat display */}
         {pet.selectedHat && pet.selectedHat !== 'none' && AVAILABLE_HATS[pet.selectedHat] && (
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <div className="text-2xl animate-bounce" style={{ animationDuration: '3s' }}>
+            <div className="text-2xl">
               {AVAILABLE_HATS[pet.selectedHat].emoji}
             </div>
           </div>
