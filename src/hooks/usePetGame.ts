@@ -328,7 +328,7 @@ export const usePetGame = () => {
     console.log('Setting gamePhase to: hatching');
     setGamePhase('hatching');
     console.log('=== selectEgg function completed ===');
-  }, []);
+  }, [playerData]);
 
   const hatchEgg = useCallback(() => {
     setGamePhase('naming');
