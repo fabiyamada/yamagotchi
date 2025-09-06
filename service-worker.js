@@ -31,7 +31,7 @@ self.addEventListener('install', (event) => {
 
 // Activación del Service Worker
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activado');
+//  console.log('Service Worker activado');
   
   event.waitUntil(
     caches.keys().then((cacheNames) => {
