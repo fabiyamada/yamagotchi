@@ -48,7 +48,7 @@ function App() {
     cancelGameSelection,
     cancelGame,
     purchaseFood,
-    openShop
+    openShop,
     purchaseHat,
     selectHat,
   } = usePetGame();
