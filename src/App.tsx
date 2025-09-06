@@ -14,6 +14,7 @@ import BubblePopGame from './components/BubblePopGame';
 import MemoryGame from './components/MemoryGame';
 import FoodShop from './components/FoodShop';
 import FoodSelectionPopup from './components/FoodSelectionPopup';
+import HatSelection from './components/HatSelection';
 import { AlertTriangle } from 'lucide-react';
 import InstallButton from "./components/InstallButton";
 import ExportImport from './components/ExportImport';
@@ -23,6 +24,7 @@ function App() {
   const [showMoodPopup, setShowMoodPopup] = useState(false);
   const [showHygieneWarning, setShowHygieneWarning] = useState(false);
   const [showFoodSelectionPopup, setShowFoodSelectionPopup] = useState(false);
+  const [showHatSelection, setShowHatSelection] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [containerBgColor, setContainerBgColor] = useState('bg-white/80');
   const { 
@@ -47,6 +49,8 @@ function App() {
     cancelGame,
     purchaseFood,
     openShop
+    purchaseHat,
+    selectHat,
   } = usePetGame();
 
   const handleAction = (actionType: GameAction['type']) => {
@@ -253,6 +257,16 @@ function App() {
                 </div>
               )}
             </div>
+            
+            {/* Hat Selection Button */}
+            <button
+              onClick={() => setShowHatSelection(true)}
+              className="bg-purple-100/80 backdrop-blur-sm rounded-full px-3 py-2 border-2 border-purple-300/50 shadow-lg hover:bg-purple-200/80 transition-colors"
+            >
+              <div className="flex items-center gap-1">
+                <span className="text-lg">👑</span>
+              </div>
+            </button>
             
             {/* Mood Button */}
             <div className="text-3xl">
@@ -500,6 +514,19 @@ function App() {
         </div>
       )}
 
+
+      {/* Hat Selection Popup */}
+      {showHatSelection && (
+        <HatSelection
+          playerCoins={playerData.coins}
+          currentHat={pet.selectedHat || null}
+          petLevel={pet.level}
+          onSelectHat={selectHat}
+          onPurchaseHat={purchaseHat}
+          onClose={() => setShowHatSelection(false)}
+          ownedHats={playerData.ownedHats || ['none']}
+        />
+      )}
 
       
 

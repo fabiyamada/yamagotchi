@@ -18,6 +18,7 @@ export interface PetState {
   age: number;
   level: number;
   isSleeping: boolean;
+  selectedHat?: string | null;
 }
 
 export interface GameAction {
@@ -33,6 +34,7 @@ export interface PlayerData {
   coins: number;
   totalPetsHatched: number;
   foodInventory: Record<string, number>;
+  ownedHats?: string[];
 }
 
 export const EGG_COSTS: Record<EggType, number> = {
@@ -125,4 +127,73 @@ export const INITIAL_FOOD_STOCK: Record<string, number> = {
   cake: 0,
   pizza: 0,
   ice_cream: 1,
+};
+
+export interface Hat {
+  id: string;
+  name: string;
+  emoji: string;
+  description: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  price: number;
+  unlockLevel?: number;
+}
+
+export const AVAILABLE_HATS: Record<string, Hat> = {
+  none: {
+    id: 'none',
+    name: 'Sin sombrero',
+    emoji: '',
+    description: 'Tu Yamagotchi al natural',
+    rarity: 'common',
+    price: 0,
+  },
+  cap: {
+    id: 'cap',
+    name: 'Gorra',
+    emoji: '🧢',
+    description: 'Una gorra deportiva casual',
+    rarity: 'common',
+    price: 50,
+  },
+  crown: {
+    id: 'crown',
+    name: 'Corona',
+    emoji: '👑',
+    description: 'Para un Yamagotchi real',
+    rarity: 'legendary',
+    price: 500,
+  },
+  hat: {
+    id: 'hat',
+    name: 'Sombrero',
+    emoji: '🎩',
+    description: 'Elegante sombrero de copa',
+    rarity: 'rare',
+    price: 150,
+  },
+  party: {
+    id: 'party',
+    name: 'Gorro de Fiesta',
+    emoji: '🎉',
+    description: '¡Siempre listo para celebrar!',
+    rarity: 'common',
+    price: 75,
+  },
+  witch: {
+    id: 'witch',
+    name: 'Sombrero de Bruja',
+    emoji: '🧙‍♀️',
+    description: 'Mágico y misterioso',
+    rarity: 'epic',
+    price: 300,
+  },
+  santa: {
+    id: 'santa',
+    name: 'Gorro de Santa',
+    emoji: '🎅',
+    description: 'Perfecto para las fiestas',
+    rarity: 'rare',
+    price: 200,
+  },
 };

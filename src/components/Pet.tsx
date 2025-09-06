@@ -1,5 +1,5 @@
 import React from 'react';
-import { PetState, FOOD_ITEMS } from '../types/Pet';
+import { PetState, FOOD_ITEMS, AVAILABLE_HATS } from '../types/Pet';
 
 interface PetProps {
   pet: PetState;
@@ -98,6 +98,15 @@ const Pet: React.FC<PetProps> = ({ pet, feedingFoodId }) => {
             </>
           )}
         </div>
+
+        {/* Hat display */}
+        {pet.selectedHat && pet.selectedHat !== 'none' && AVAILABLE_HATS[pet.selectedHat] && (
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <div className="text-2xl animate-bounce" style={{ animationDuration: '3s' }}>
+              {AVAILABLE_HATS[pet.selectedHat].emoji}
+            </div>
+          </div>
+        )}
 
         {/* Pet name */}
         <div className="mt-4 text-center">

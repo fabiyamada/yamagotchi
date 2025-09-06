@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PetState, PetStats, GameAction, GamePhase, EggType, PlayerData, EGG_COSTS, INITIAL_FOOD_STOCK, FOOD_ITEMS, GameType } from '../types/Pet';
+import { PetState, PetStats, GameAction, GamePhase, EggType, PlayerData, EGG_COSTS, INITIAL_FOOD_STOCK, FOOD_ITEMS, GameType, AVAILABLE_HATS } from '../types/Pet';
 import { savePetData, loadPetData, clearPetData, savePlayerData, loadPlayerData, clearPlayerData } from '../utils/localStorage';
 
 const INITIAL_STATS: PetStats = {
@@ -28,6 +28,7 @@ const INITIAL_PLAYER_DATA: PlayerData = {
   coins: 0,
   totalPetsHatched: 0,
   foodInventory: INITIAL_FOOD_STOCK,
+  ownedHats: ['none'], // Everyone starts with "no hat"
 };
 
 const EGG_TO_COLOR_MAP: Record<EggType, string> = {
@@ -406,6 +407,48 @@ export const usePetGame = () => {
     return true;
   }, [playerData.coins]);
 
+  const purchaseHat = useCallback((hatId: string): boolean => {
+    const hat = AVAILABLE_HATS[hatId];
+    if (!hat) return false;
+    
+    // Check if already owned
+    if (playerData.ownedHats?.includes(hatId)) {
+      return false;
+    }
+    
+    // Check if can afford
+    if (playerData.coins < hat.price) {
+      return false;
+    }
+    
+    // Check level requirement
+    if (hat.unlockLevel && pet.level < hat.unlockLevel) {
+      return false;
+    }
+    
+    // Purchase hat
+    setPlayerData(prevData => ({
+      ...prevData,
+      coins: prevData.coins - hat.price,
+      ownedHats: [...(prevData.ownedHats || []), hatId]
+    }));
+    
+    return true;
+  }, [playerData.coins, playerData.ownedHats, pet.level]);
+
+  const selectHat = useCallback((hatId: string) => {
+    // Check if owned
+    if (!playerData.ownedHats?.includes(hatId) && hatId !== 'none') {
+      return;
+    }
+    
+    setPet(prevPet => ({
+      ...prevPet,
+      selectedHat: hatId,
+      lastUpdated: Date.now(),
+    }));
+  }, [playerData.ownedHats]);
+
   const openShop = useCallback(() => {
     setGamePhase('shop');
   }, []);
@@ -433,5 +476,7 @@ export const usePetGame = () => {
     cancelGame,
     purchaseFood,
     openShop,
+    purchaseHat,
+    selectHat,
   };
 };
