@@ -168,7 +168,7 @@ function App() {
       <div className="max-w-md mx-auto relative z-20">
         {/* Header */}
         <div className="relative text-center mb-6 z-99">
-          <h1 className={`text-3xl font-jersey font-bold mb-2 transition-all duration-1000 ${
+          <h1 className={`text-3xl font-jersey font-bold mb-2 tcoinransition-all duration-1000 ${
             pet.isSleeping 
               ? 'text-white/80' 
               : 'bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent'
