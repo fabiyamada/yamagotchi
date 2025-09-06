@@ -93,7 +93,7 @@ export default function EggSelection({ onEggSelect, playerCoins }: EggSelectionP
 
   // Debug logs
   console.log('PlayerCoins:', playerCoins, 'Type:', typeof playerCoins);
-  console.log('EGG_COSTS:', EGG_COSTS);
+ // console.log('EGG_COSTS:', EGG_COSTS);
 
   const handleEggSelect = (eggType: string) => {
     const egg = eggs.find(e => e.type === eggType);
@@ -150,7 +150,7 @@ export default function EggSelection({ onEggSelect, playerCoins }: EggSelectionP
             const canAffordEgg = egg.cost <= playerCoins;
             const isDisabled = !canAffordEgg && egg.cost > 0;
             
-            console.log(`Egg ${egg.name}: Cost=${egg.cost}, PlayerCoins=${playerCoins}, CanAfford=${canAffordEgg}, IsDisabled=${isDisabled}`);
+         //   console.log(`Egg ${egg.name}: Cost=${egg.cost}, PlayerCoins=${playerCoins}, CanAfford=${canAffordEgg}, IsDisabled=${isDisabled}`);
             
             return (
               <button
