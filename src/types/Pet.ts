@@ -4,7 +4,6 @@ export interface PetStats {
   happiness: number;
   health: number;
   cleanliness: number;
-  coins: number;
 }
 
 export interface PetState {

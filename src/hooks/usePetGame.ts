@@ -8,7 +8,6 @@ const INITIAL_STATS: PetStats = {
   happiness: 60,
   health: 100,
   cleanliness: 90,
-  coins: 0,
 };
 
 const INITIAL_PET_STATE: PetState = {
@@ -352,7 +351,6 @@ export const usePetGame = () => {
     
     setPet(prevPet => {
       const newStats = { ...prevPet.stats };
-      newStats.coins = newStats.coins + results.coinsEarned;
       newStats.happiness = Math.min(100, newStats.happiness + results.happinessEarned);
       newStats.energy = Math.max(0, newStats.energy - 10); // Playing games costs energy
       
