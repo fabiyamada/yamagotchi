@@ -98,7 +98,7 @@ export default function EggSelection({ onEggSelect, playerCoins }: EggSelectionP
   const handleEggSelect = (eggType: string) => {
     const egg = eggs.find(e => e.type === eggType);
     console.log('Attempting to select egg:', eggType);
-    console.log('Egg data:', egg);
+    // console.log('Egg data:', egg);
     console.log('Can afford?', egg && egg.cost <= playerCoins);
     
     if (egg && egg.cost > playerCoins) {
