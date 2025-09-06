@@ -41,6 +41,17 @@ const Pet: React.FC<PetProps> = ({ pet, feedingFoodId }) => {
             boxShadow: `0 10px 25px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6)`,
           }}
         >
+
+          
+        {/* Hat display */}
+        {pet.selectedHat && pet.selectedHat !== 'none' && AVAILABLE_HATS[pet.selectedHat] && (
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <div className="text-2xl animate-bounce" style={{ animationDuration: '3s' }}>
+              {AVAILABLE_HATS[pet.selectedHat].emoji}
+            </div>
+          </div>
+        )}
+          
           {/* Eyes */}
           <div className="absolute top-8 left-6 flex space-x-7">
             {/* Eye LEFT */}
@@ -97,20 +108,6 @@ const Pet: React.FC<PetProps> = ({ pet, feedingFoodId }) => {
               )}
             </>
           )}
-        </div>
-
-        {/* Hat display */}
-        {pet.selectedHat && pet.selectedHat !== 'none' && AVAILABLE_HATS[pet.selectedHat] && (
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <div className="text-2xl animate-bounce" style={{ animationDuration: '3s' }}>
-              {AVAILABLE_HATS[pet.selectedHat].emoji}
-            </div>
-          </div>
-        )}
-
-        {/* Pet name */}
-        <div className="mt-4 text-center">
-          {/* <h2 className="text-lg font-semibold text-gray-600">{pet.name}</h2> */}
         </div>
         
         {/* Food display below pet */}
