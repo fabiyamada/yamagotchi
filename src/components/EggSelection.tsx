@@ -1,6 +1,16 @@
 import React from 'react';
 import { Sparkles, Heart, Zap, Shield, Star } from 'lucide-react';
-import { EGG_COSTS } from '../types/Pet';
+// import { EGG_COSTS } from '../types/Pet';
+
+// Valores temporales para debug - reemplaza estos con tus EGG_COSTS reales
+const EGG_COSTS = {
+  ordinario: 0,
+  common: 100,
+  rare: 250,
+  epic: 500,
+  legendary: 1000,
+  mythic: 2000
+};
 
 interface EggType {
   type: string;
@@ -91,16 +101,27 @@ const eggs: EggType[] = [
 export default function EggSelection({ onEggSelect, playerCoins }: EggSelectionProps) {
   const [selectedEgg, setSelectedEgg] = React.useState<string | null>(null);
 
+  // Debug logs
+  console.log('PlayerCoins:', playerCoins, 'Type:', typeof playerCoins);
+  console.log('EGG_COSTS:', EGG_COSTS);
+
   const handleEggSelect = (eggType: string) => {
     const egg = eggs.find(e => e.type === eggType);
+    console.log('Attempting to select egg:', eggType);
+    console.log('Egg data:', egg);
+    console.log('Can afford?', egg && egg.cost <= playerCoins);
+    
     if (egg && egg.cost > playerCoins) {
+      console.log('Cannot afford egg - Cost:', egg.cost, 'Player coins:', playerCoins);
       return; // No permitir seleccionar si no tiene suficientes monedas
     }
+    console.log('Egg selected successfully:', eggType);
     setSelectedEgg(eggType);
   };
 
   const handleConfirm = () => {
     if (selectedEgg) {
+      console.log('Confirming egg selection:', selectedEgg);
       onEggSelect(selectedEgg);
     }
   };
@@ -138,6 +159,8 @@ export default function EggSelection({ onEggSelect, playerCoins }: EggSelectionP
             const isSelected = selectedEgg === egg.type;
             const canAffordEgg = egg.cost <= playerCoins;
             const isDisabled = !canAffordEgg && egg.cost > 0;
+            
+            console.log(`Egg ${egg.name}: Cost=${egg.cost}, PlayerCoins=${playerCoins}, CanAfford=${canAffordEgg}, IsDisabled=${isDisabled}`);
             
             return (
               <button
