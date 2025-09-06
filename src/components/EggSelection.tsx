@@ -11,7 +11,7 @@ const EGG_COSTS = {
   legendary: 1000,
   mythic: 2000
 };
-
+ 
 interface EggType {
   type: string;
   name: string;
