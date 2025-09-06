@@ -1,16 +1,6 @@
 import React from 'react';
 import { Sparkles, Heart, Zap, Shield, Star } from 'lucide-react';
-// import { EGG_COSTS } from '../types/Pet';
-
-// Valores temporales para debug - reemplaza estos con tus EGG_COSTS reales
-const EGG_COSTS = {
-  ordinario: 0,
-  common: 100,
-  rare: 250,
-  epic: 500,
-  legendary: 1000,
-  mythic: 2000
-};
+import { EGG_COSTS } from '../types/Pet';
  
 interface EggType {
   type: string;
