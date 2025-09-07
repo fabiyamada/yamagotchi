@@ -447,6 +447,8 @@ function App() {
             </button>
           </div>
 
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
+            
             <p className="text-xs font-poppins mb-3">
             El siguiente botón corresponde a las pruebas para instalar el juego como app. De momento está probada su funcionalidad en el navegador Chrome para escritorio. Si puedes instalarlo en otro dispositivo, hazme saber.            
             </p>
