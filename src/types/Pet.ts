@@ -156,15 +156,6 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     rarity: 'ordinario',
     price: 0,
   },
-  bandana: {
-    id: 'bandana',
-    name: 'Bandana',
-    emoji: '🎽',
-    description: 'Una bandana deportiva básica',
-    rarity: 'ordinario',
-    price: 25,
-    unlockRarity: 'ordinario',
-  },
   cap: {
     id: 'cap',
     name: 'Gorra',
@@ -174,17 +165,17 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     price: 50,
     unlockRarity: 'common',
   },
-  hat: {
-    id: 'hat',
-    name: 'Sombrero',
+  tophat: {
+    id: 'tophat',
+    name: 'Sombrero de copa',
     emoji: '🎩',
     description: 'Elegante sombrero de copa',
     rarity: 'rare',
     price: 150,
     unlockRarity: 'rare',
   },
-  party: {
-    id: 'party',
+  sweet: {
+    id: 'sweet',
     name: 'Sombrero lindo',
     emoji: '👒',
     description: 'Ideal para un día de campo',
@@ -192,8 +183,8 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     price: 75,
     unlockRarity: 'rare',
   },
-  witch: {
-    id: 'witch',
+  graduate: {
+    id: 'graduate',
     name: 'Graduado',
     emoji: '🎓',
     description: 'Felicidades si te has graduado',
@@ -201,11 +192,20 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     price: 300,
     unlockRarity: 'epic',
   },
-  santa: {
-    id: 'santa',
+  bow: {
+    id: 'bow',
     name: 'Moñito',
     emoji: '🎀',
     description: 'Un adorno muy lindo',
+    rarity: 'epic',
+    price: 200,
+    unlockRarity: 'epic',
+  },
+  caterpillar: {
+    id: 'caterpillar',
+    name: 'Oruguita',
+    emoji: '🐛',
+    description: 'Una oruguita',
     rarity: 'epic',
     price: 200,
     unlockRarity: 'epic',
@@ -219,11 +219,20 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     price: 500,
     unlockRarity: 'legendary',
   },
-  celestial: {
-    id: 'celestial',
-    name: 'Halo Celestial',
-    emoji: '😇',
-    description: 'Un halo divino para los más especiales',
+ cherryblossom: {
+    id: 'cherryblossom',
+    name: 'Flor de cerezo',
+    emoji: '🌸',
+    description: 'Un adorno muy kawaii',
+    rarity: 'ordinario',
+    price: 25,
+    unlockRarity: 'legendary',
+  },
+  butterfly: {
+    id: 'butterfly',
+    name: 'Mariposa',
+    emoji: '🦋',
+    description: '¡Una mariposa!',
     rarity: 'mythic',
     price: 1000,
     unlockRarity: 'mythic',
