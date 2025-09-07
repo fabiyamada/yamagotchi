@@ -19,6 +19,7 @@ import { AlertTriangle } from 'lucide-react';
 import InstallButton from "./components/InstallButton";
 import ExportImport from './components/ExportImport';
 import ClipboardStorage from "./components/ClipboardStorage";
+import HardRefreshButton from './components/HardRefreshButton';
 
 function App() {
   const [showMoodPopup, setShowMoodPopup] = useState(false);
