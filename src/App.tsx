@@ -429,6 +429,8 @@ function App() {
              El siguiente botón es por si hay una versión nueva y no puedes ver los cambios.            
             </p>
             <HardRefreshButton />
+
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
             
             <p className="text-xs font-poppins mb-3">
              Si das click en el siguiente botón, tu mascota actual desaparecerá. Conservarás tus monedas y podras comprar otro huevito si así lo deseas:              
