@@ -6,7 +6,7 @@ const HardRefreshButton = () => {
     // Force a hard refresh by reloading the page and clearing cache
     window.location.reload();
   };
-
+ 
   return (
     <button
       onClick={handleHardRefresh}
