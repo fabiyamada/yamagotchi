@@ -224,7 +224,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     name: 'Flor de cerezo',
     emoji: '🌸',
     description: 'Un adorno muy kawaii',
-    rarity: 'ordinario',
+    rarity: 'legendary',
     price: 500,
     unlockRarity: 'legendary',
   },
