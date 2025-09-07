@@ -425,10 +425,13 @@ function App() {
             <p className="text-xs font-poppins mb-2">
               ☣️ <span className="font-semibold">Zona Peligrosa y de Pruebas</span>.
             </p>
+            <p className="text-xs font-poppins mb-3">
+             El siguiente botón es por si hay una versión nueva y no puedes ver los cambios.            
+            </p>
             <HardRefreshButton />
             
             <p className="text-xs font-poppins mb-3">
-             Si das click aquí tu mascota actual desaparecerá. Conservarás tus monedas y podras comprar otro huevito si así lo deseas:              
+             Si das click en el siguiente botón, tu mascota actual desaparecerá. Conservarás tus monedas y podras comprar otro huevito si así lo deseas:              
             </p>
 
             {/* Reset Button - Moved to end with warning styling */}
