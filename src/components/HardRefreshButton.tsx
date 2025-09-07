@@ -3,10 +3,10 @@ import { RefreshCw } from 'lucide-react';
 
 const HardRefreshButton = () => {
   const handleHardRefresh = () => {
-    // Force a hard refresh by reloading the page and clearing cache
-    window.location.reload();
+    // Redirigir con timestamp para forzar recarga
+    window.location.href = window.location.href.split('?')[0] + '?t=' + Date.now();
   };
- 
+
   return (
     <button
       onClick={handleHardRefresh}
