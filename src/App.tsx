@@ -424,6 +424,7 @@ function App() {
             <p className="text-xs font-poppins mb-2">
               ☣️ <span className="font-semibold">Zona Peligrosa y de Pruebas</span>.
             </p>
+            <HardRefreshButton />
             
             <p className="text-xs font-poppins mb-3">
              Si das click aquí tu mascota actual desaparecerá. Conservarás tus monedas y podras comprar otro huevito si así lo deseas:              
