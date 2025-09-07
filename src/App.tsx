@@ -520,7 +520,7 @@ function App() {
         <HatSelection
           playerCoins={playerData.coins}
           currentHat={pet.selectedHat || null}
-          petLevel={pet.level}
+          petEggType={pet.eggType}
           onSelectHat={selectHat}
           onPurchaseHat={purchaseHat}
           onClose={() => setShowHatSelection(false)}

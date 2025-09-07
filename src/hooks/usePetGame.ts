@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { PetState, PetStats, GameAction, GamePhase, EggType, PlayerData, EGG_COSTS, INITIAL_FOOD_STOCK, FOOD_ITEMS, GameType, AVAILABLE_HATS } from '../types/Pet';
+import { PetState, PetStats, GameAction, GamePhase, EggType, PlayerData, EGG_COSTS, INITIAL_FOOD_STOCK, FOOD_ITEMS, GameType, AVAILABLE_HATS, RARITY_ORDER } from '../types/Pet';
 import { savePetData, loadPetData, clearPetData, savePlayerData, loadPlayerData, clearPlayerData } from '../utils/localStorage';
 
 const INITIAL_STATS: PetStats = {
@@ -433,7 +433,7 @@ export const usePetGame = () => {
     }
     
     // Check level requirement
-    if (hat.unlockLevel && pet.level < hat.unlockLevel) {
+    if (hat.unlockRarity && RARITY_ORDER[pet.eggType] < RARITY_ORDER[hat.unlockRarity]) {
       return false;
     }
     

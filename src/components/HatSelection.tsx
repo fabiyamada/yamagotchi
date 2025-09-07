@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { X, Crown, Coins, Lock } from 'lucide-react';
-import { AVAILABLE_HATS, Hat } from '../types/Pet';
+import { AVAILABLE_HATS, Hat, EggType, RARITY_ORDER } from '../types/Pet';
 
 interface HatSelectionProps {
   playerCoins: number;
   currentHat: string | null;
-  petLevel: number;
+  petEggType: EggType;
   onSelectHat: (hatId: string) => void;
   onPurchaseHat: (hatId: string) => boolean;
   onClose: () => void;
@@ -15,7 +15,7 @@ interface HatSelectionProps {
 const HatSelection: React.FC<HatSelectionProps> = ({ 
   playerCoins, 
   currentHat, 
-  petLevel,
+  petEggType,
   onSelectHat, 
   onPurchaseHat,
   onClose,
@@ -26,20 +26,24 @@ const HatSelection: React.FC<HatSelectionProps> = ({
 
   const getRarityColor = (rarity: Hat['rarity']) => {
     switch (rarity) {
+      case 'ordinario': return 'from-gray-200 to-gray-300';
       case 'common': return 'from-gray-300 to-gray-400';
       case 'rare': return 'from-blue-300 to-blue-500';
       case 'epic': return 'from-purple-400 to-purple-600';
       case 'legendary': return 'from-yellow-400 to-orange-500';
+      case 'mythic': return 'from-pink-400 to-red-500';
       default: return 'from-gray-300 to-gray-400';
     }
   };
 
   const getRarityStars = (rarity: Hat['rarity']) => {
     switch (rarity) {
+      case 'ordinario': return '';
       case 'common': return '⭐';
       case 'rare': return '⭐⭐';
       case 'epic': return '⭐⭐⭐';
       case 'legendary': return '⭐⭐⭐⭐';
+      case 'mythic': return '⭐⭐⭐⭐⭐';
       default: return '';
     }
   };
@@ -59,7 +63,26 @@ const HatSelection: React.FC<HatSelectionProps> = ({
 
   const isOwned = (hatId: string) => ownedHats.includes(hatId) || hatId === 'none';
   const canAfford = (hat: Hat) => playerCoins >= hat.price;
-  const isUnlocked = (hat: Hat) => !hat.unlockLevel || petLevel >= hat.unlockLevel;
+  const isUnlocked = (hat: Hat) => !hat.unlockRarity || RARITY_ORDER[petEggType] >= RARITY_ORDER[hat.unlockRarity];
+
+  // Sort hats by rarity order
+  const sortedHats = Object.values(AVAILABLE_HATS).sort((a, b) => {
+    const rarityA = a.rarity === 'ordinario' ? -1 : RARITY_ORDER[a.rarity as EggType] || 0;
+    const rarityB = b.rarity === 'ordinario' ? -1 : RARITY_ORDER[b.rarity as EggType] || 0;
+    return rarityA - rarityB;
+  });
+
+  const getRarityDisplayName = (rarity: Hat['rarity']) => {
+    switch (rarity) {
+      case 'ordinario': return 'Ordinario';
+      case 'common': return 'Común';
+      case 'rare': return 'Raro';
+      case 'epic': return 'Épico';
+      case 'legendary': return 'Legendario';
+      case 'mythic': return 'Mítico';
+      default: return rarity;
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -90,7 +113,7 @@ const HatSelection: React.FC<HatSelectionProps> = ({
 
         {/* Hat Grid */}
         <div className="grid grid-cols-2 gap-4 mb-6">
-          {Object.values(AVAILABLE_HATS).map((hat) => {
+          {sortedHats.map((hat) => {
             const owned = isOwned(hat.id);
             const affordable = canAfford(hat);
             const unlocked = isUnlocked(hat);
@@ -147,7 +170,7 @@ const HatSelection: React.FC<HatSelectionProps> = ({
                     {!unlocked ? (
                       <div className="text-xs font-poppins text-red-500 flex items-center justify-center gap-1">
                         <Lock className="w-3 h-3" />
-                        Nivel {hat.unlockLevel} requerido
+                        {getRarityDisplayName(hat.unlockRarity!)} requerido
                       </div>
                     ) : owned ? (
                       <button

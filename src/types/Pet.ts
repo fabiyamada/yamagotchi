@@ -133,10 +133,19 @@ export interface Hat {
   name: string;
   emoji: string;
   description: string;
-  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  rarity: 'ordinario' | 'common' | 'rare' | 'epic' | 'legendary' | 'mythic';
   price: number;
-  unlockLevel?: number;
+  unlockRarity?: EggType;
 }
+
+export const RARITY_ORDER: Record<EggType, number> = {
+  ordinario: 0,
+  common: 1,
+  rare: 2,
+  epic: 3,
+  legendary: 4,
+  mythic: 5,
+};
 
 export const AVAILABLE_HATS: Record<string, Hat> = {
   none: {
@@ -144,8 +153,17 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     name: 'Sin sombrero',
     emoji: '',
     description: 'Tu Yamagotchi al natural',
-    rarity: 'common',
+    rarity: 'ordinario',
     price: 0,
+  },
+  bandana: {
+    id: 'bandana',
+    name: 'Bandana',
+    emoji: '🎽',
+    description: 'Una bandana deportiva básica',
+    rarity: 'ordinario',
+    price: 25,
+    unlockRarity: 'ordinario',
   },
   cap: {
     id: 'cap',
@@ -154,14 +172,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     description: 'Una gorra deportiva casual',
     rarity: 'common',
     price: 50,
-  },
-  crown: {
-    id: 'crown',
-    name: 'Corona',
-    emoji: '👑',
-    description: 'Para un Yamagotchi real',
-    rarity: 'legendary',
-    price: 500,
+    unlockRarity: 'common',
   },
   hat: {
     id: 'hat',
@@ -170,14 +181,16 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     description: 'Elegante sombrero de copa',
     rarity: 'rare',
     price: 150,
+    unlockRarity: 'rare',
   },
   party: {
     id: 'party',
     name: 'Sombrero lindo',
     emoji: '👒',
     description: 'Ideal para un día de campo',
-    rarity: 'common',
+    rarity: 'rare',
     price: 75,
+    unlockRarity: 'rare',
   },
   witch: {
     id: 'witch',
@@ -186,13 +199,33 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     description: 'Felicidades si te has graduado',
     rarity: 'epic',
     price: 300,
+    unlockRarity: 'epic',
   },
   santa: {
     id: 'santa',
     name: 'Moñito',
     emoji: '🎀',
     description: 'Un adorno muy lindo',
-    rarity: 'rare',
+    rarity: 'epic',
     price: 200,
+    unlockRarity: 'epic',
+  },
+  crown: {
+    id: 'crown',
+    name: 'Corona',
+    emoji: '👑',
+    description: 'Para un Yamagotchi real',
+    rarity: 'legendary',
+    price: 500,
+    unlockRarity: 'legendary',
+  },
+  celestial: {
+    id: 'celestial',
+    name: 'Halo Celestial',
+    emoji: '😇',
+    description: 'Un halo divino para los más especiales',
+    rarity: 'mythic',
+    price: 1000,
+    unlockRarity: 'mythic',
   },
 };
