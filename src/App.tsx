@@ -455,6 +455,8 @@ function App() {
             
             <InstallButton />
 
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
+
              <ClipboardStorage />
           </div>
         </div>
