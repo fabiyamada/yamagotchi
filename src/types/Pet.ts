@@ -225,7 +225,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     emoji: '🌸',
     description: 'Un adorno muy kawaii',
     rarity: 'ordinario',
-    price: 25,
+    price: 500,
     unlockRarity: 'legendary',
   },
   butterfly: {
