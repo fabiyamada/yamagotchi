@@ -8,15 +8,3 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>
 );
-
-
-
-// --- REGISTRAR SERVICE WORKER ---
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/yamagotchi/service-worker.js')
-      .then(reg => console.log('Service Worker registrado:', reg))
-      .catch(err => console.error('Error registrando SW:', err));
-  });
-}

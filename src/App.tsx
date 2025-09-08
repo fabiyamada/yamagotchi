@@ -16,8 +16,6 @@ import FoodShop from './components/FoodShop';
 import FoodSelectionPopup from './components/FoodSelectionPopup';
 import HatSelection from './components/HatSelection';
 import { AlertTriangle } from 'lucide-react';
-import InstallButton from "./components/InstallButton";
-import ExportImport from './components/ExportImport';
 import ClipboardStorage from "./components/ClipboardStorage";
 
 function App() {
@@ -444,7 +442,7 @@ function App() {
             El siguiente botón corresponde a las pruebas para instalar el juego como app. De momento está probada su funcionalidad en el navegador Chrome para escritorio. Si puedes instalarlo en otro dispositivo, hazme saber.            
             </p>
             
-            <InstallButton />
+            {/* <InstallButton /> */}
 
              <ClipboardStorage />
           </div>
