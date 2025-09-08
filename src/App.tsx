@@ -219,44 +219,6 @@ function App() {
                   <span className="text-lg">🎨</span>
                 </div>
               </button>
-              
-              {/* Color Picker Popup */}
-              {showColorPicker && (
-                <div className="absolute top-12 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/50 z-50 min-w-[200px]">
-                  <div className="text-sm font-poppins font-medium text-gray-700 mb-3 text-center">
-                    Papel tapiz
-                  </div>
-                  <div className="grid grid-cols-4 gap-2">
-                    {backgroundOptions.map((option) => (
-                      <button
-                        key={option.class}
-                        onClick={() => {
-                          setContainerBgColor(option.class);
-                          setShowColorPicker(false);
-                        }}
-                        className={`
-                          flex items-center gap-2 p-2 rounded-lg border-2 transition-all duration-200 hover:scale-105
-                          ${containerBgColor === option.class 
-                            ? 'border-purple-400 bg-purple-50' 
-                            : 'border-gray-200 hover:border-gray-300'
-                          }
-                        `}
-                      >
-                        <div className={`w-4 h-4 rounded-full ${option.preview} border border-gray-300`}></div>
-                        {/* <span className="text-xs font-poppins text-gray-700">{option.name}</span> */}
-                      </button>
-                    ))}
-                  </div>
-                  
-                  {/* Close button */}
-                  <button
-                    onClick={() => setShowColorPicker(false)}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-gray-400 hover:bg-gray-500 text-white rounded-full text-xs flex items-center justify-center"
-                  >
-                    ×
-                  </button>
-                </div>
-              )}
             </div>
             
             {/* Hat Selection Button */}
@@ -526,6 +488,55 @@ function App() {
       )}
 
 
+      {/* Background Color Selection Modal */}
+      {showColorPicker && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/50 max-w-lg w-full max-h-[80vh] overflow-y-auto">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🎨</span>
+                <h2 className="text-2xl font-jersey font-bold bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
+                  Papel Tapiz
+                </h2>
+              </div>
+              <button
+                onClick={() => setShowColorPicker(false)}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <span className="text-gray-600 text-xl">×</span>
+              </button>
+            </div>
+
+            {/* Background Options Grid */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              {backgroundOptions.map((option) => (
+                <button
+                  key={option.class}
+                  onClick={() => {
+                    setContainerBgColor(option.class);
+                    setShowColorPicker(false);
+                  }}
+                  className={`
+                    relative p-4 rounded-2xl border-2 transition-all duration-300 transform hover:scale-105
+                    ${containerBgColor === option.class 
+                      ? 'border-purple-400 bg-purple-100 scale-105' 
+                      : 'bg-white/80 border-white/50 hover:bg-white'
+                    }
+                    shadow-lg
+                  `}
+                >
+                  {/* Preview */}
+                  <div className="relative mb-3">
+                    <div 
+                      className={`w-16 h-16 mx-auto rounded-2xl ${option.preview} shadow-lg border border-gray-300`}
+                    />
+                  </div>
+
+                  {/* Name */}
+                  <div className="text-center">
+                    <h3 className="font-bold font-jersey text-sm text-gray-800">{option.name}</h3>
+                  </div>
       {/* Hat Selection Popup */}
       {showHatSelection && (
         <HatSelection
