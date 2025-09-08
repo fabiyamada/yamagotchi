@@ -534,7 +534,7 @@ function App() {
                   </div>
 
                   {/* Name */}
-                  <div className="text-center">
+                  <div className="text-center" >
                     <p className="text-xs font-poppins text-gray-700 font-medium">
                       {option.name}
                     </p>
