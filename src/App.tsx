@@ -392,7 +392,7 @@ function App() {
             </p>
             <HardRefreshButton />
 
-            <div class="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
             
             <p className="text-xs font-poppins mb-3">
              Si das click en el siguiente botón, tu mascota actual desaparecerá. Conservarás tus monedas y podras comprar otro huevito si así lo deseas:              
@@ -409,7 +409,7 @@ function App() {
             </button>
           </div>
 
-            <div class="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
             
             <p className="text-xs font-poppins mb-3">
             El siguiente botón corresponde a las pruebas para instalar el juego como app. De momento está probada su funcionalidad en el navegador Chrome para escritorio. Si puedes instalarlo en otro dispositivo, hazme saber.            
@@ -417,7 +417,7 @@ function App() {
             
             <InstallButton />
 
-            <div class="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-pink-300/50 to-transparent my-6"></div>
 
              <ClipboardStorage />
           </div>
@@ -535,3 +535,46 @@ function App() {
 
                   {/* Name */}
                   <div className="text-center">
+                    <p className="text-xs font-poppins text-gray-700 font-medium">
+                      {option.name}
+                    </p>
+                  </div>
+
+                  {/* Selected indicator */}
+                  {containerBgColor === option.class && (
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center">
+                      <span className="text-xs">✓</span>
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Close Button */}
+            <div className="text-center">
+              <button
+                onClick={() => setShowColorPicker(false)}
+                className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 font-poppins rounded-xl transition-colors"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Hat Selection Modal */}
+      {showHatSelection && (
+        <HatSelection
+          playerCoins={playerData.coins}
+          currentHat={pet.hat}
+          onSelectHat={selectHat}
+          onPurchaseHat={purchaseHat}
+          onClose={() => setShowHatSelection(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
