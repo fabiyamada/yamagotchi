@@ -171,7 +171,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     emoji: '🎩',
     description: 'Elegante sombrero de copa',
     rarity: 'rare',
-    price: 75,
+    price: 150,
     unlockRarity: 'rare',
   },
   sweet: {
@@ -189,7 +189,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     emoji: '🎓',
     description: 'Felicidades si te has graduado',
     rarity: 'epic',
-    price: 150,
+    price: 300,
     unlockRarity: 'epic',
   },
   bow: {
@@ -198,7 +198,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     emoji: '🎀',
     description: 'Un adorno muy lindo',
     rarity: 'epic',
-    price: 150,
+    price: 200,
     unlockRarity: 'epic',
   },
   caterpillar: {
@@ -207,7 +207,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     emoji: '🐛',
     description: 'Una oruguita',
     rarity: 'epic',
-    price: 300,
+    price: 200,
     unlockRarity: 'epic',
   },
   crown: {
@@ -224,7 +224,7 @@ export const AVAILABLE_HATS: Record<string, Hat> = {
     name: 'Flor de cerezo',
     emoji: '🌸',
     description: 'Un adorno muy kawaii',
-    rarity: 'legendary',
+    rarity: 'ordinario',
     price: 500,
     unlockRarity: 'legendary',
   },
