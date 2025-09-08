@@ -535,31 +535,3 @@ function App() {
 
                   {/* Name */}
                   <div className="text-center">
-                    <h3 className="font-bold font-jersey text-sm text-gray-800">{option.name}</h3>
-                  </div>
-      {/* Hat Selection Popup */}
-      {showHatSelection && (
-        <HatSelection
-          playerCoins={playerData.coins}
-          currentHat={pet.selectedHat || null}
-          petEggType={pet.eggType}
-          onSelectHat={selectHat}
-          onPurchaseHat={purchaseHat}
-          onClose={() => setShowHatSelection(false)}
-          ownedHats={playerData.ownedHats || ['none']}
-        />
-      )}
-
-      
-
-      
-    </div>
-
-  
-  );
-}
-
-
-
-
-export default App;
